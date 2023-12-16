@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    Add Restaurant Page
+{% endblock %}
+
+{% block content %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" class="form-addrestaurant" style="color:white">
+            {{ form.hidden_tag() }}
+            <h1 class="h3 mb-3 font-weight-normal">
+                Please Add a Restaurant
+            </h1>
+            <br>
+            {{ form.name.label() }}
+            {{ form.name(class="form-control", placeholder="Restaurant Name") }}
+
+            {{ form.address.label() }}
+            {{ form.address(class="form-control", placeholder="Address") }}
+
+            {{ form.phone.label() }}
+            {{ form.phone(class="form-control", placeholder="Phone No.") }}
+
+            {{ form.email.label() }}
+            {{ form.email(class="form-control", placeholder="Email Address") }}
+
+            <br>
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+        </form>
+    </div>
+</body>
+{% endblock %}

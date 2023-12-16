@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+Restaurants Page
+{% endblock %}
+{% block content %}
+
+<div class="row" style="margin-top:20px; margin-left:20px">
+   <div class="col-8">
+       <h2>Available Restaurants</h2>
+       <p>Click on one of the items to start browsing</p>
+       <br>
+      <table class="table table-hover table-dark">
+         <thead>
+            <tr>
+               <!-- Your Columns HERE -->
+               <th scope="col">ID</th>
+               <th scope="col">Name</th>
+               <th scope="col">Address</th>
+               <th scope="col">Phone</th>
+               <th scope="col">Email</th>
+               <th scope="col">Options</th>
+            </tr>
+         </thead>
+         <tbody>
+            <!-- Your rows inside the table HERE: -->
+            {% for restaurant in restaurants %}
+            <tr>
+               <td>{{ restaurant.id }}</td>
+               <td>{{ restaurant.name }}</td>
+               <td>{{ restaurant.address }}</td>
+               <td>{{ restaurant.phone }}</td>
+               <td>{{ restaurant.email }}</td>
+               <td>
+                  <a class="nav-link" href="/{{ restaurant.id }}/market">Meals</a>
+               </td>
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+   </div>
+   <div class="col-4">
+        <h2>Owned Items</h2>
+        <p>Click on sell item to remove</p>
+        <br>
+        <div class="row">
+           {% for owned_item in owned_items %}
+           {% include 'includes/owned_items_modals.html' %}
+             <div class="col-md-6">
+                 <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                      <div class="card-body">
+                          <h5 class="card-title">{{ owned_item.name }}</h5>
+                          <button type="button" class="btn btn-outline-danger" style="margin-bottom: 5px"
+                                  data-toggle="modal" data-target="#Modal-SellingConfirm-{{ owned_item.id }}">
+                              Sell this Item
+                          </button>
+                          <p class="card-text"><strong>
+                              This item costs {{ owned_item.price }}$
+                          </strong></p>
+                      </div>
+                  </div>
+             </div>
+           {% endfor %}
+        </div>
+   </div>
+</div>
+{% endblock %}
